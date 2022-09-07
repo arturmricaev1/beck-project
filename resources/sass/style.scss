@@ -1,0 +1,49 @@
+* {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu-item {
+    margin-left: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu div a {
+    margin-left: 20px;
+    font-size: 20px;
+    color: black;
+}
+.new-posts {
+    margin-top: 100px;
+}
+strong span {
+    color: red;
+    font-size: 20px;
+}
+.content {
+    margin-top: 40px;
+}
+.index {
+    a {
+        margin-bottom: 10px;
+    }
+    .crud {
+
+        display: flex;
+        justify-content: space-around;
+    }
+}
+.panel {
+    margin-left: 20px;
+} 
