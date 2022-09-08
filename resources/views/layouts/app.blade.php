@@ -10,15 +10,15 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('dist/js/app.js') }}" defer></script>
+    <link href="{{ asset('dist/css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('dist/css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('dist/css/style.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -36,7 +36,9 @@
                         Админ панель
                     </a>
                    @else
-            
+                    <a class="navbar-brand" href="{{ url('/error') }}">
+                        Админ панель
+                    </a>
                    @endif
                 @endif
                 
