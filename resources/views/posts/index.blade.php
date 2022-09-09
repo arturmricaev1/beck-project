@@ -17,15 +17,18 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-    <table class="table table-bordered"> 
+    <table class="table table-bordered "> 
         <tr>
             <th>Название</th>
             <th>Описание</th>
+            <th>Цена</th>
         </tr>
         @foreach ($posts as $post)
         <tr>
             <td>{{ $post->title }}</td>
             <td>{{ $post->description }}</td>
+            <td>{{ $post->price }}р</td>
+
             <td class='crud'>
                  <a class="btn btn-info" href="{{ route('posts.show',$post->id) }}">Просмотр</a>
                     <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Редактировать</a>

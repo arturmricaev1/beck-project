@@ -12,7 +12,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -20,13 +19,18 @@
                 {{ $post->title }}
             </div>
         </div>
-
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Описание:</strong>
                 {{ $post->description }}
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Цена:</strong>
+                {{ $post->price }}р
+            </div>
+        </div>
     </div>
 </div>
-@endsection
+@endsection 

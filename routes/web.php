@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('home');
-
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/error', 'App\Http\Controllers\HomeController@error')->name('error');
 Route::resource('posts', PostController::class);

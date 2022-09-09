@@ -32,15 +32,13 @@ class AdminController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'price' => 'required',
         ]);
-
         Post::create($request->all());
-
         return redirect()->route('posts.index')->with('success','Post created successfully.');
     }
 
@@ -50,8 +48,7 @@ class AdminController extends Controller {
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
-    {
+    public function show(Post $post) {
       return view('posts.show',compact('post'));
     }
 
@@ -61,8 +58,7 @@ class AdminController extends Controller {
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
-    {
+    public function edit(Post $post) {
         return view('posts.edit',compact('post'));
     }
 
@@ -73,11 +69,11 @@ class AdminController extends Controller {
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
-    {
+    public function update(Request $request, Post $post) {
         $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'price' => 'required',
         ]);
 
         $post->update($request->all());
@@ -91,11 +87,9 @@ class AdminController extends Controller {
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
-    {
+    public function destroy(Post $post) {
       $post->delete();
-
        return redirect()->route('posts.index')
-                       ->with('success','post deleted successfully');
+            ->with('success','post deleted successfully');
     }
 }

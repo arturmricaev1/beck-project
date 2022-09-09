@@ -19,7 +19,6 @@ class PostController extends Controller {
     }
 
     /**
-     * Выводит форму для создания нового ресурса
      *
      * @return \Illuminate\Http\Response
      */
@@ -37,6 +36,7 @@ class PostController extends Controller {
         $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'price' => 'required',
         ]);
 
         Post::create($request->all());
@@ -75,6 +75,7 @@ class PostController extends Controller {
         $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'price' => 'required',
         ]);
 
         $post->update($request->all());

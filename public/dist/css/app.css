@@ -10861,3 +10861,20 @@ textarea.form-control-lg {
 h1 .user-name {
   color: red;
 }
+.admin-block {
+  margin-left: 30%;
+}
+.not-admin {
+  font-size: 30px;
+}
+.admin-img {
+  width: 50%;
+
+}
+.crud {
+  display: flex;
+  justify-content: space-around;
+}
+.table-bordered {
+  margin-top: 20px;
+} 

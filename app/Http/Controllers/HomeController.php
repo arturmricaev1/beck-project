@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
     /**
@@ -12,8 +10,7 @@ class HomeController extends Controller {
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
@@ -27,16 +24,16 @@ class HomeController extends Controller {
     }
 
     public function welcome() {
-        $users = User::all();
+        $users  = Auth::user();
         return view('welcome1', compact('users'));
     }
 
     public function error() {
-        return view('welcome');
+        $users  = Auth::user();
+        return view('welcome', compact('users'));
     }
 
     public function admin() {
         return view('layout.admin');
     }
-    
 }
