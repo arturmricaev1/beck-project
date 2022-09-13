@@ -28,7 +28,6 @@
             <td>{{ $post->title }}</td>
             <td>{{ $post->description }}</td>
             <td>{{ $post->price }}р</td>
-
             <td class='crud'>
                  <a class="btn btn-info" href="{{ route('posts.show',$post->id) }}">Просмотр</a>
                     <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Редактировать</a>

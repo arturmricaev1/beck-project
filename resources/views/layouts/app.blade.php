@@ -30,19 +30,17 @@
                 <a class="navbar-brand" href="{{ url('/posts') }}">
                     Товары
                 </a>
-                @if (auth()->check())
-                   @if (auth()->user()->isAdmin())
-                    <a class="navbar-brand" href="{{ url('/admin') }}">
-                        Админ панель
+                <a class="navbar-brand" href="{{ url('/admin') }}">
+                    Админ панель
+                </a>
+                @role('admin')
+                    <a class="navbar-brand" href="{{ url('/users') }}">
+                        Добавить роль 
                     </a>
-                   @else
-                    <a class="navbar-brand" href="{{ url('/error') }}">
-                        Админ панель
-                    </a>
-                   @endif
-                @endif
-                
-                
+                @else
+       
+                @endrole
+        
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
