@@ -11,13 +11,13 @@ const mix = require('laravel-mix');
  |
  */
 
-mix .sourceMaps(true, 'source-map')
-    .js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/dist/css')
-    .options({
-        processCssUrls: false
-      })
-    .sass('resources/sass/style.scss', 'public/dist/css')
-    .options({
-        processCssUrls: false
-      });
+ mix .sourceMaps(true, 'source-map')
+ .js('resources/js/app.js', 'public/js')
+ .sass('resources/sass/app.scss', 'public/dist/css')
+ .options({
+     processCssUrls: false
+   })
+ .sass('resources/sass/style.scss', 'public/dist/css')
+ .options({
+     processCssUrls: false
+   });

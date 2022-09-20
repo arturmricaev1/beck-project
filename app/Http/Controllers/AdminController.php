@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller {
@@ -12,7 +12,7 @@ class AdminController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $posts = Post::all();
+        $posts = Product::all();
 
         return view('posts.index', compact('posts'));
     }
@@ -38,7 +38,7 @@ class AdminController extends Controller {
             'description' => 'required',
             'price' => 'required',
         ]);
-        Post::create($request->all());
+        Product::create($request->all());
         return redirect()->route('posts.index')->with('success','Post created successfully.');
     }
 
@@ -48,7 +48,7 @@ class AdminController extends Controller {
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post) {
+    public function show(Product $post) {
       return view('posts.show',compact('post'));
     }
 
@@ -58,7 +58,7 @@ class AdminController extends Controller {
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post) {
+    public function edit(Product $post) {
         return view('posts.edit',compact('post'));
     }
 
@@ -69,7 +69,7 @@ class AdminController extends Controller {
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post) {
+    public function update(Request $request, Product $post) {
         $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -87,7 +87,7 @@ class AdminController extends Controller {
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post) {
+    public function destroy(Product $post) {
       $post->delete();
        return redirect()->route('posts.index')
             ->with('success','post deleted successfully');

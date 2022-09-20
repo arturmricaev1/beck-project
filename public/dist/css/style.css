@@ -7,6 +7,9 @@
   width: 100%;
   margin: 0 auto;
 }
+.container .asdasdasdasdasd {
+  color: red;
+}
 
 .menu {
   display: flex;
@@ -41,6 +44,17 @@ strong span {
 .index a {
   margin-bottom: 10px;
 }
+.index .crud {
+  display: flex;
+  justify-content: space-around;
+}
 
+.panel {
+  margin-left: 20px;
+}
+
+h1 .user-name {
+  color: red;
+}
 
 /*# sourceMappingURL=style.css.map*/

@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
-
+ /*!
+ * Bootstrap  v5.2.0 (https://getbootstrap.com/)
+ * Copyright 2011-2022 The Bootstrap Authors
+ * Copyright 2011-2022 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -2226,7 +2231,6 @@ textarea.form-control-lg {
      -moz-appearance: none;
           appearance: none;
   -webkit-print-color-adjust: exact;
-     color-adjust: exact;
           print-color-adjust: exact;
 }
 .form-check-input[type=checkbox] {
@@ -10845,36 +10849,28 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-
-/*# sourceMappingURL=app.css.map*/
 .panel {
   margin-left: 20px;
-} 
-.admin-menu {
-  display: flex;
-  justify-content: space-around;
 }
-.admin-novigation li a {
-  color: #ffff;
-  margin-left: 20px;
-}
-h1 .user-name {
+
+h1 .user-name, .h1 .user-name {
   color: red;
 }
-.admin-block {
-  margin-left: 30%;
-}
-.not-admin {
-  font-size: 30px;
-}
-.admin-img {
-  width: 50%;
 
+.admin-route {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
 }
-.crud {
+.admin-route div {
+  display: grid;
+}
+.admin-route div a{
+  font-size: 18px;
+}
+.products-create {
+  max-width: 500px;
+  width: 100%;
   display: flex;
   justify-content: space-around;
 }
-.table-bordered {
-  margin-top: 20px;
-} 

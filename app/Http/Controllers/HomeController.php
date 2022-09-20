@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller {
     /**
@@ -23,6 +26,13 @@ class HomeController extends Controller {
         return view('home');
     }
 
+    public function all() {
+        $products = Product::latest()->simplePaginate(5);
+        return view('product',compact('products'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+
+    }
+
     public function welcome() {
         $users  = Auth::user();
         return view('welcome1', compact('users'));
@@ -33,7 +43,13 @@ class HomeController extends Controller {
         return view('welcome', compact('users'));
     }
 
+    public function personal() {
+        $users = User::find('id');
+        return view('personal-area', compact('users'));
+    }
+
     public function admin() {
         return view('layout.admin');
     }
+    
 }

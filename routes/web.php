@@ -1,10 +1,13 @@
 <?php
 
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\UserRoleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BasketController;
+use App\Http\Controllers\ProductController;
+  
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,16 +20,18 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('welcome');
+Route::get('/personal-area/{id}', 'App\Http\Controllers\HomeController@personal');
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
-Route::get('/error', 'App\Http\Controllers\HomeController@error')->name('error');
-Route::resource('posts', PostController::class);
+Route::get('/all', 'App\Http\Controllers\HomeController@all')->name('all');
 Auth::routes();
-Route::group(['middleware' => ['role:admin']], function () {
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RoleController::class);
     Route::resource('admin', AdminController::class);
-    Route::get('users', 'App\Http\Controllers\UserRoleController@index')->name('users');
-    Route::get('permissions', 'App\Http\Controllers\UserRoleController@permissions')->name('permissions');
-    Route::post('change/{user}/role/{roleId}', 'App\Http\Controllers\UserRoleController@changeRole')->name('change-role');
+    Route::resource('users', UserController::class);
+    Route::resource('products', ProductController::class);
 });
 
-
-
+Route::get('/basket/add/{id}', 'App\Http\Controllers\BasketController@add')->name('basket.add');    
+Route::get('/basket/index', 'App\Http\Controllers\BasketController@index')->name('basket.index');
+Route::get('/basket/checkout', 'App\Http\Controllers\BasketController@checkout')->name('basket.checkout');
+        
