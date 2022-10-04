@@ -20,13 +20,9 @@
             </ul>
         </div>
         
-    @endif
-        
-        
-           
-    <form  enctype="multipart/form-data" action="{{ route('products.store' ) }}" method="POST">
+    @endif       
+    <form enctype="multipart/form-data" action="{{ route('products.store') }}" method="POST">
     	@csrf
-    
          <div class="row">
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
@@ -40,22 +36,26 @@
 		            <input type="number" name="price" class="form-control" placeholder="Name">
 		        </div>
 		    </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>Code:</strong>
+		            <input type="number" name="code" class="form-control" placeholder="Name">
+		        </div>
+		    </div>
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
 		            <strong>Detail:</strong>
 		            <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
-		        </div>
-                
+		        </div> 
 		    </div>
-            <div class="form-group">
-                <label for="image">Картинка для новости</label>
-                <input type="file" class="form-control-file" id="image" name="image">
-            </div>
+			<div class="form-group" style="margin: 35px 0">
+				<label for="image">Картинка для новости</label>
+				<input type="file" class="form-control-file" id="image" name="image">
+			</div>
 		    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 		            <button type="submit" class="btn btn-outline-dark">Submit</button>
 		    </div>
 		</div>
-
     </form>
 </div>
 @endsection

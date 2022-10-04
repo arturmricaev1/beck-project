@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Permission;
   
 class CreateAdminUserSeeder extends Seeder {
     /**
-     * Запустить начальные данные базы данных.
+     *
      *
      * @return void
      */

@@ -1,8 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.app') 
 @section('content')
-
-<div class="container admin-block">
-    <p class='not-admin'>Ты даже не Админ!</p>
-    <img class='admin-img' src="/image/png/images.jpg" alt="none">
-</div>
+@foreach ($items as $item)
+    <div class="container">
+        <div class="product">
+            <div class="product-foto">
+                <img class="product-foto-img" src="{{ url('/image/news/origin/'.$item->image) }}" alt="">
+            </div>
+            <div class="product-desc">
+                <p>Название <span>{{ $item->name }}</span></p>
+                <p>Описание <span>{{ $item->detail }}</span></p>
+                <p>Цена <span>{{ $item->price }} р.</span></p>
+            </div>
+        </div>
+    </div>
+@endforeach
 @endsection

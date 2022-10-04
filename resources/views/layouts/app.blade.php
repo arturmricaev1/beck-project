@@ -66,7 +66,7 @@
                             @endif
                         @else
                             <a class="navbar-brand" href="{{ route('basket.index') }}">
-                                Карзина
+                                Корзина
                             </a>
                             <a class="navbar-brand" href="{{ url('/personal-area/{id}') }}">
                                 Личный кабинет

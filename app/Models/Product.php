@@ -2,6 +2,8 @@
   
 namespace App\Models;
 
+
+
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,14 +11,18 @@ use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class Product extends Model {
     use HasFactory;
-    /**
-     * Атрибуты, которые можно назначать массово.
-     *	
-     * @var array
-     */
+
+    protected $guarded = []; 
+
     protected $fillable = [
-        'name', 'detail', 'image', 'price', 'user_id'
+        'name',
+        'detail',
+        'image',
+        'price',
+        'user_id',
+        'code'
     ];
+    
     public function render($request, Exception $exception) {
     if ($exception instanceof \Symfony\Component\HttpFoundation\File\Exception\FileException) {
         // create a validator and validate to throw a new ValidationException
@@ -30,12 +36,17 @@ class Product extends Model {
     public function user() {
       return $this->belongsTo(User::class);
     }
+    
      /**
      * Связь «многие ко многим» таблицы `products` с таблицей `baskets`
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
+    // public function discounts (){
+    //     return $this->hasOne(Discount::class);
+    // }
+
     public function baskets() {
-        return $this->belongsToMany(Basket::class)->withPivot('quantity');
+        return $this->belongsToMany(Basket::class);
     }
 }

@@ -1,11 +1,12 @@
 <?php
     
 namespace App\Http\Controllers;
-    
+
+use App\Http\Requests\ProductRequest;
+use App\Models\Discount;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use Intervention\Image\Facades\Image;
     
@@ -30,7 +31,6 @@ class ProductController extends Controller {
         $products = Product::latest()->simplePaginate(5);
         return view('products.index',compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
-
     }
     
     /**
@@ -39,7 +39,6 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create(User $user) {
-        
         return view('products.create');
     }
     
@@ -53,10 +52,9 @@ class ProductController extends Controller {
         $user = auth()->user()->id;
 
         $request->request->add(['user_id' => $user]); //add request
-
         $data = $request->all();
-
-     
+        
+        $discount = $request->discount;
         $filename = $data['image']->getClientOriginalName();
 
         $data['image']->move(public_path().'/image/news/origin/', $filename);
@@ -70,8 +68,7 @@ class ProductController extends Controller {
         $validator = FacadesValidator::make($request->all(), [
             'file' => 'max:5120', //5MB 
         ]);
-
-    
+ 
         return redirect()->route('products.index')
                         ->with('success','Product created successfully.');
     }
@@ -104,14 +101,9 @@ class ProductController extends Controller {
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product) {
-         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
-        ]);
-    
-        $product->update($request->all());
-    
+    public function update(ProductRequest $request, Product $product) {
+        $validatedData = $request->validated();
+        $product->update($validatedData);
         return redirect()->route('products.index')
                         ->with('success','Product updated successfully');
     }
@@ -124,7 +116,6 @@ class ProductController extends Controller {
      */
     public function destroy(Product $product) {
         $product->delete();
-    
         return redirect()->route('products.index')
                         ->with('success','Product deleted successfully');
     }

@@ -24,11 +24,10 @@ class BasketController extends Controller {
      * Добавляет товар с идентификатором $id в корзину
      */
     public function add(Request $request, $id) {
-        
         $basket_id = $request->cookie('basket_id');
         $quantity = $request->input('quantity') ?? 1;
-        if (empty($basket_id)) {
-           
+        if (empty($basket_id)) {           
+                
             // если корзина еще не существует — создаем объект
             $basket = Basket::create();
             // получаем идентификатор, чтобы записать в cookie

@@ -12,27 +12,28 @@
             </div>
         </div>
     </div>
-
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div>
     @endif
-
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
+            <th>code</th>
             <th>Name</th>
             <th>Details</th>
             <th width="280px">Foto</th>
             <th width="280px">price</th>
             <th>User_id</th>
             <th>Action</th>
-   
         </tr>
 	    @foreach ($products as $product)
 	    <tr>
-	        <td>{{ ++$i }}</td>
+	        <td>
+                <a href='{{ route('detailed', ['code' => $product->code])}}'>
+                {{ $product->code }}
+                </a>
+            </td>
 	        <td>{{ $product->name }}</td>
 	        <td>{{ $product->detail }}</td>
 	        <td><img src="{{ url('/image/news/thumbnail/'.$product->image) }}" alt=""></td>
@@ -40,11 +41,11 @@
 	        <td>{{ $product->user_id }}</td>
 	        <td>
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
+                    <a class="btn btn-outline-info" href="{{ route('discount', ['id' => $product]) }}">Discount</a>
                     <a class="btn btn-outline-success" href="{{ route('products.show',$product->id) }}">Show</a>
                     @can('product-edit')
                     <a class="btn btn-outline-warning" href="{{ route('products.edit',$product->id) }}">Edit</a>
                     @endcan
-
                     @csrf
                     @method('DELETE')
                     @can('product-delete')

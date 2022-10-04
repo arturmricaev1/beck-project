@@ -2,23 +2,43 @@
 @section('content')
 <div class="container">
     <table class="table table-bordered">
+        @foreach ($products as $product)
         <tr>
-            <th>No</th>
+            <th>code</th>
             <th>Name</th>
             <th>Details</th>
             <th width="280px">price</th>
             <th width="280px">Foto</th>
             <th width="280px">Actions</th>
-   
         </tr>
-	    @foreach ($products as $product)
+	   
 	    <tr>
-	        <td>{{ ++$i }}</td>
+	        <td><a href='{{ route('detailed', ['code' => $product->code])}}'>{{ $product->code }}</a></td>
 	        <td>{{ $product->name }}</td>
 	        <td>{{ $product->detail }}</td>
-	        <td>{{ $product->price }}р</td>
+            @if ($product->discount != 0)
+                <td class="disount-span">
+                    <span class="disount-old">
+                        {{ $product->price }}р
+                    </span>
+                    <span class="disount-new">
+                        {{ ($product->price-($product->price/100)*$product->discount)}}р
+                    </span>
+                </td>
+            @elseif (($product->discount == 0)) 
+                <td>{{ $product->price }}</td>
+            @endif
 
-	        <td><img src="{{ url('/image/news/thumbnail/'.$product->image) }}" alt=""></td>
+	        
+	        <td>
+                <div class="image-discount">
+                    <img class="image-all" src="{{ url('/image/news/thumbnail/'.$product->image) }}" alt="">
+                    @if ($product->discount != 0)
+                        <p class="discount">{{ $product->discount }}%</p>
+                    @endif
+                </div>
+            </td>
+        
 	        <td>
                 <div class="col-md-10">
                     <p>Цена: {{ number_format($product->price, 2, '.', '') }}</p>
