@@ -9,10 +9,10 @@
         @endphp
         <table class="table table-bordered">
             <tr>
-                <th>№</th>
                 <th>Наименование</th>
                 <th>Цена</th>
                 <th>Кол-во</th>
+                <th>Фото</th>
                 <th>Стоимость</th>
             </tr>
             @foreach($products as $product)
@@ -23,7 +23,7 @@
                     $basketCost = $basketCost + $itemCost;
                 @endphp
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+  
                     <td>
                         <a href="{{ route('all', [$product->slug]) }}">{{ $product->name }}</a>
                     </td>
@@ -33,6 +33,7 @@
                         <span class="mx-1">{{ $itemQuantity }}</span>
                         <i class="fas fa-plus-square"></i>
                     </td>
+                    <td><img src="{{ url('/image/news/thumbnail/'.$product->image) }}" alt=""></td>
                     <td>{{ number_format($itemCost, 2, '.', '') }}</td>
                 </tr>
             @endforeach

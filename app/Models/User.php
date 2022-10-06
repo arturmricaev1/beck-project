@@ -15,6 +15,8 @@ class User extends Authenticatable {
      *
      * @var array
      */
+    protected $table = 'users';
+
     protected $fillable = [
         'name',
         'email',
@@ -45,6 +47,7 @@ class User extends Authenticatable {
         return $roles[0] ?? null;
     }
     public function products() {
-      return $this->hasMany(Product::class);
+        return $this->belongsToMany(Product::class, 'user_product');
     }
+
 }

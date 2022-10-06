@@ -19,7 +19,7 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('welcome');
-Route::get('/personal-area/{id}', 'App\Http\Controllers\HomeController@personal');
+Route::get('/personal-area', 'App\Http\Controllers\HomeController@personal');
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/all', 'App\Http\Controllers\HomeController@all')->name('all');
 Route::get('/one/{code}', 'App\Http\Controllers\HomeController@one')->name('detailed');
@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('admin', AdminController::class);
     Route::get('/discount/{id}', 'App\Http\Controllers\HomeController@discount')->name('discount');
     Route::post('/discount/{id}', 'App\Http\Controllers\HomeController@store')->name('discount.store');
+    Route::get('/favorites/{id}', 'App\Http\Controllers\HomeController@favorites')->name('favorites');
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
 });

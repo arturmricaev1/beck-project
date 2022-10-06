@@ -37,6 +37,14 @@ class HomeController extends Controller {
         return view('welcome1', compact('users'));
     }
 
+    public function favorites(int $id, Request $request) {
+            $user = Auth::user();
+            $user->products()->toggle([$id]);
+                // dump($user->products);
+                return back();
+
+    }
+
     public function store(int $id, Request $request) {
         $discount = $request->all('discount');
         $discount = implode($discount); 
@@ -54,8 +62,12 @@ class HomeController extends Controller {
     }
 
     public function personal() {
-        $users = User::find('id');
-        return view('personal-area', compact('users'));
+        $auth = Auth::user();
+        $id = $auth->id;
+        $tags = User::find($id);
+        $tags = $tags->products; 
+
+        return view('personal-area', compact('tags'));
     }
 
     public function admin() {

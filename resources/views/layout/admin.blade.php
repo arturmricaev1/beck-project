@@ -10,6 +10,7 @@
                 <p>Название <span>{{ $item->name }}</span></p>
                 <p>Описание <span>{{ $item->detail }}</span></p>
                 <p>Цена <span>{{ $item->price }} р.</span></p>
+               
             </div>
         </div>
     </div>
